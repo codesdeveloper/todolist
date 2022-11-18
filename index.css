@@ -1,0 +1,119 @@
+
+.login{
+    width: 500px;
+    background: #222;
+    border-radius: 10px;
+    margin: 100px auto;
+    padding: 5px 0 20px 0;
+    box-shadow: 0 0 5px;
+}
+
+.login .form-content{
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.login h2{
+    color: #ddd;
+    text-align: center;
+}
+
+.login span{
+    color: #fff;
+    margin-left: 5px;
+}
+
+.login input{
+    height: 30px;
+    width: 300px;
+    border-radius: 5px;
+    outline: none;
+    margin: 5px 0 15px 0;
+}
+
+.login button{
+    width: 200px;
+    height: 30px;
+    text-align: center;
+    display:block;
+    margin: 0 auto;
+    border-radius: 10px;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+ 
+.login .error{
+    color: red;
+    text-align: center;
+    display: block;
+    margin:0 0 10px 0;
+    padding: 0 20px;
+}
+
+.login .login-email{
+    text-align: center;
+    display: none;
+    margin-bottom: 10px;
+    color: #0f0;
+}
+
+.tarefas{
+    margin: 20px;
+    text-align: center;
+    display: none;
+}
+
+.tarefas input{
+    border-radius: 10px;
+    width: 80%;
+    height: 60px;
+    padding: 0 10px;
+}
+
+.tarefas input[type=text]{
+    height: 80px;
+}
+
+.tarefas button{
+    width: 80%;
+    height: 40px;
+    padding: 0 10px;
+    background: rgb(248, 9, 248);
+    color: white;
+    font-weight: bold;
+}
+
+.tarefas ul{
+    list-style: none;
+}
+
+.tarefas li{
+    color: #fff;
+    font-size: 18px;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.tarefas li span{
+    color: red;
+    cursor: pointer;
+}
+
+.tarefas li span:hover{
+    color: #700;
+}
+
+span.msg{
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: red;
+    background: #0008;
+    padding: 3px;
+    border-radius: 5px;
+    display: none;
+}
