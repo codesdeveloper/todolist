@@ -16,6 +16,10 @@
         <span class="login-email"></span>
         <form name="login">
             <div class="form-content">
+                <label class="name"><span>Nome: </span><br />
+                    <input type="text" name="name">
+                </label><br />
+
                 <label><span>Email: </span><br />
                     <input type="email" name="email">
                 </label><br />
@@ -26,33 +30,32 @@
             </div>
             <span class="error"></span>
             <button type="bubmit" name="acao">Logar!</button>
+            <a class="new-acout" href="javascript:void">Criar nova conta!</a>
         </form>
 
-      
-       <div class="tarefas">
-        <hr>
-        <form name="tarefas">
-            <input required placeholder="Digite sua tarefa..." type="text">
-            <input required type="datetime-local">
-            <button>Addicionar Tarefa</button>
-        </form>
-        <h2>Lista de Tarefas</h2>
-        <ul>
-            <li>Tarefa 1 <span>X</span></li>
-            <li>Tarefa 1 <span>X</span></li>
-            <li>Tarefa 1 <span>X</span></li>
-            <li>Tarefa 1 <span>X</span></li>
-            <li>Tarefa 1 <span>X</span></li>
-        </ul>
-       </div>
+        <div class="tarefas">
+            <hr>
+            <form name="tarefas">
+                <input required placeholder="Digite sua tarefa..." type="text">
+                <input required type="datetime-local">
+                <button>Addicionar Tarefa</button>
+            </form>
+            <h2>Lista de Tarefas</h2>
+            <ul>
+                <li>Tarefa 1 <span>X</span></li>
+                <li>Tarefa 1 <span>X</span></li>
+                <li>Tarefa 1 <span>X</span></li>
+                <li>Tarefa 1 <span>X</span></li>
+                <li>Tarefa 1 <span>X</span></li>
+            </ul>
+        </div>
 
-       <span class="msg">Tarefa adicionada com sucesso...</span>
+        <span class="msg">Tarefa adicionada com sucesso...</span>
 
-
-    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase-firestore.js"></script>
-    <script src="index.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase-firestore.js"></script>
+        <script src="index.js"></script>
 </body>
 
 </html>

@@ -12,9 +12,10 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 let usuario = null;
+let novoususario = false;
 
 function logado() {
-    document.querySelector('.login h2').innerText = "Olá, Você esta conectado";
+    document.querySelector('.login h2').innerText = `Olá ${usuario.displayName}, Você esta conectado`;
     document.querySelector('.login .form-content').style.display = 'none';
     document.querySelector('.login .error').style.display = 'none';
     document.querySelector('.login .error').innerText = '';
@@ -25,7 +26,7 @@ function logado() {
     document.querySelector('form[name=login]').reset();
     document.querySelector('.tarefas').style.display = 'block';
     toast('logado com sucesso...');
-
+    document.querySelector('.login .new-acout').style.display = 'none';
     let ul = document.querySelector('.tarefas ul');
     ul.innerHTML = '';
 
@@ -34,7 +35,7 @@ function logado() {
         let docs = d.docs;
 
         docs.sort((a, b) => {
-            if(a.time < b.time)return -1;
+            if (a.time < b.time) return -1;
             else return 1;
         });
 
@@ -68,25 +69,60 @@ document.querySelector('form[name=login]').addEventListener('submit', (e) => {
         em.style.display = 'none';
         usuario = null;
         document.querySelector('.tarefas').style.display = 'none';
+        document.querySelector('.login .new-acout').style.display = 'block';
         toast('usuario deslogado...');
         return;
     }
 
+    let name = document.querySelector('input[name=name]').value;
     let email = document.querySelector('input[name=email]').value;
     let pass = document.querySelector('input[name=password]').value;
+    let auth = firebase.auth();
 
-    firebase.auth().signInWithEmailAndPassword(email, pass)
-        .then((userCredential) => {
-            usuario = userCredential.user;
-            logado();
-        })
-        .catch((error) => {
+    if (novoususario) {
+        auth.createUserWithEmailAndPassword(email, pass).then((userCredential) => {
+            var user = userCredential.user;
+            user.updateProfile({
+                displayName: name,
+            });
+            toast('usuario criado...');
+            novoususario = false;
+        }).catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
             document.querySelector('.login .error').innerText = errorMessage;
         });
 
+    } else {
+        auth.signInWithEmailAndPassword(email, pass).then((userCredential) => {
+            usuario = userCredential.user;
+            logado();
+        }).catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            document.querySelector('.login .error').innerText = errorMessage;
+        });
+    }
+
 });
+
+document.querySelector('.login .new-acout').addEventListener('click', () => {
+
+    if (novoususario) {
+        document.querySelector('.login label.name').style.display = 'none';
+        document.querySelector('.login h2').innerText = 'Faça Login no App!';
+        document.querySelector('.login button').innerText = 'Login!';
+        document.querySelector('.login .new-acout').innerText = 'Fazer login!';
+        novoususario = false;
+    } else {
+        novoususario = true;
+        document.querySelector('.login label.name').style.display = 'inline';
+        document.querySelector('.login h2').innerText = 'Criar Novo Usuario!';
+        document.querySelector('.login button').innerText = 'Criar!';
+        document.querySelector('.login .new-acout').innerText = 'Fazer login!';
+    }
+})
+
 
 firebase.auth().onAuthStateChanged(user => {
     if (user == null) return;
